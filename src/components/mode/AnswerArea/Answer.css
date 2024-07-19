@@ -1,0 +1,50 @@
+#answers {
+  display: grid;
+  gap: 1rem;
+}
+
+.character-details {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.character-details img {
+  width: 100px;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.character-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.character-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.character-field.good {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.character-field.bad {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  margin-left: 0.5rem;
+}
