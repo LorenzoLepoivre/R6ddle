@@ -30,6 +30,7 @@
     background-color: rgba(255, 255, 255, 0.8); /* Ajoute un fond semi-transparent */
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
   
   #input-field {

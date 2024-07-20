@@ -1,34 +1,57 @@
 #answers {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .character-details {
   display: flex;
+  align-items: center;
   gap: 1rem;
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.character-details:hover {
+  transform: translateY(-5px);
 }
 
 .character-details img {
   width: 100px;
   height: auto;
   border-radius: 0.5rem;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .character-info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  flex-grow: 1;
+  align-items: center; /* Centrer les éléments verticalement */
+}
+
+.character-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 1rem;
 }
 
 .character-field {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+  min-width: 100px; /* Minimum width for each field */
 }
 
 .character-field.good {
