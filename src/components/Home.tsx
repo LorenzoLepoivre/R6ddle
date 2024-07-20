@@ -1,15 +1,15 @@
-import "./Home.css";
-import Footer from "./Footer";
-import Header from "./Header";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getCharacters } from "../models/firebase";
 import { useTranslation } from 'react-i18next';
+import { getCharacters } from '../models/firebase';
+import './Home.css';
+import Footer from './Footer';
+import Header from './Header';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [suggestions, setSuggestions] = useState([]);
   const { t, i18n } = useTranslation();
+  const [suggestions, setSuggestions] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -19,7 +19,7 @@ const Home = () => {
     fetchCharacters();
   }, [i18n.language]);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     navigate('/character');
   };
 

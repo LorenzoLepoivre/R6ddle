@@ -1,21 +1,43 @@
 import React, { useState, useEffect } from "react";
-import "./QuizArea.css";
 import { useTranslation } from 'react-i18next';
+import "./QuizArea.css";
 
-const QuizArea = ({ suggestions = [], answers = [], setAnswers, goodAnswers, setFinish }) => {
+interface Suggestion {
+  name: string;
+  type: string;
+  camp: string;
+  hp: number;
+  speed: number;
+  difficulty: number;
+  year: number;
+  birthplace: string;
+  image: string;
+  today: boolean;
+}
+
+interface QuizAreaProps {
+  suggestions: Suggestion[];
+  answers: Suggestion[];
+  setAnswers: React.Dispatch<React.SetStateAction<Suggestion[]>>;
+  goodAnswers: Suggestion | null;
+  setFinish: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const QuizArea: React.FC<QuizAreaProps> = ({ suggestions = [], answers = [], setAnswers, goodAnswers, setFinish }) => {
   const { t } = useTranslation();
   const [input, setInput] = useState("");
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
     if (value) {
       const filtered = suggestions.filter((suggestion) => {
-        const suggestionText = typeof suggestion === "string" ? suggestion : suggestion.name;
-        return suggestionText.toLowerCase().startsWith(value.toLowerCase()) && !answers.includes(suggestion);
+        const suggestionText = suggestion.name.toLowerCase();
+        return suggestionText.startsWith(value.toLowerCase()) && !answers.some(answer => answer.name === suggestion.name);
       });
+      console.log('Filtered Suggestions:', filtered); // Ajouter un log ici
       setFilteredSuggestions(filtered);
       setShowSuggestions(true);
     } else {
@@ -24,28 +46,28 @@ const QuizArea = ({ suggestions = [], answers = [], setAnswers, goodAnswers, set
     }
   };
 
-  const handleSuggestionClick = (suggestion) => {
+  const handleSuggestionClick = (suggestion: Suggestion) => {
     sendAnswer(suggestion);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && filteredSuggestions.length > 0) {
       sendAnswer(filteredSuggestions[0]);
     }
   };
 
-  const handleClickOutside = (event) => {
-    if (event.target.id !== "input-field" && !event.target.classList.contains("suggestion-item")) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if ((event.target as HTMLElement).id !== "input-field" && !(event.target as HTMLElement).classList.contains("suggestion-item")) {
       setShowSuggestions(false);
     }
   };
 
-  const sendAnswer = (answer) => {
+  const sendAnswer = (answer: Suggestion) => {
     setAnswers((prevAnswers) => [answer, ...prevAnswers]);
     setInput("");
     setFilteredSuggestions([]);
     setShowSuggestions(false);
-    if(answer === goodAnswers) {
+    if (goodAnswers && answer.name === goodAnswers.name) {
       setFinish(true);
     }
   };
@@ -71,9 +93,9 @@ const QuizArea = ({ suggestions = [], answers = [], setAnswers, goodAnswers, set
       {showSuggestions && filteredSuggestions.length > 0 && (
         <div id="suggestions">
           {filteredSuggestions.map((suggestion, index) => (
-            !answers.includes(suggestion) && (
+            !answers.some(answer => answer.name === suggestion.name) && (
               <div key={index} className="suggestion-item" onClick={() => handleSuggestionClick(suggestion)}>
-                {typeof suggestion === "string" ? suggestion : suggestion.name}
+                {suggestion.name}
               </div>
             )
           ))}

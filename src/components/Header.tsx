@@ -1,10 +1,11 @@
-import "./Header.css";
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import "./Header.css";
 
-const Header = () => {
+const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
 
