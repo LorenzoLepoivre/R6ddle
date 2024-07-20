@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, setDoc } from "firebase/firestore"; // Ajout de getDocs
+import { getFirestore, collection, getDocs, doc, setDoc } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
+// Assurez-vous que les variables d'environnement sont correctement chargées
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -21,7 +22,7 @@ export const getCharacters = (language) => {
   const charactersCollection = collection(db, 'characters_' + language);
   return getDocs(charactersCollection).then(snapshot => {
     const characters = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-    console.log(characters);
+    console.log('Fetched characters:', characters);
     return characters;
   });
 };
@@ -41,15 +42,16 @@ export const addCharacter = (language, character, id) => {
     image: character.image,
     today: character.today
   };
+  console.log('Adding character:', payload);
   return setDoc(charactersDoc, payload);
-}
+};
 
 export const addCharacters = (language, allCharacters) => {
   const promises = allCharacters.map(character =>
     addCharacter(language, character, character.id)
   );
   return Promise.all(promises);
-}
+};
 
 export const selectRandomCharacter = (language) => {
   getCharacters(language).then(charactersList => {
