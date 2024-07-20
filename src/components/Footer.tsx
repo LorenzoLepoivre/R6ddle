@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <h1>{t('footer_title')}<a href="https://github.com/LorenzoLepoivre"> Lorenzo Lepoivre</a></h1>
+      <h1>{t('footer_title')}<a href="https://github.com/LorenzoLepoivre"> SupPepper</a></h1>
     </footer>
   );
 };
