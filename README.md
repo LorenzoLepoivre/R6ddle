@@ -7,7 +7,7 @@ Welcome to R6DLE! This is a Loldle-like website but with a Rainbow Six Siege the
 - [Features](#features)
 - [Usage](#usage)
 - [Built With](#built-with)
-- [Testing](#testing)
+- [Product Video](#product-video)
 
 ## Features
 
@@ -36,10 +36,9 @@ To add new characters to the game, update the character data in the appropriate 
 * [Firebase](https://firebase.google.com/docs/database?hl=fr) - A platform developed by Google. It provides a real-time NoSQL database and backend as a service.
 * [React](https://react.dev/) - A JavaScript library for building user interfaces.
 
-## Testing
+## Product Video
 
-You can test the live version of the website at the following URL:
-[Live Demo](http://your-live-demo-url.com)
+
 
 ---
 
