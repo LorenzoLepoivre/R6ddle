@@ -38,7 +38,7 @@ To add new characters to the game, update the character data in the appropriate 
 
 ## Product Video
 
-
+https://github.com/user-attachments/assets/a81b98b2-1ff1-4b99-af1d-17c869638768
 
 ---
 
