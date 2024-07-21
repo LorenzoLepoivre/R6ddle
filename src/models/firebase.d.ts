@@ -1,28 +1,9 @@
-// Declaration file for '../models/firebase' module
+// src/models/firebase.d.ts
 
 declare module '../models/firebase' {
-
-    interface Character {
-      name: string;
-      type: string;
-      camp: string;
-      hp: number;
-      speed: number;
-      difficulty: number;
-      year: number;
-      birthplace: string;
-      image: string;
-      today: boolean;
-    }
-  
-    function getCharacters(language: string): Promise<Character[]>;
-  
-    function addCharacter(language: string, character: Character, id: number): Promise<void>;
-  
-    function addCharacters(language: string, allCharacters: Character[]): Promise<void[]>;
-  
-    function selectRandomCharacter(language: string): void;
-  
-    export { Character, getCharacters, addCharacter, addCharacters, selectRandomCharacter };
+    export function getCharacters(language: string): Promise<any>;
+    export function addCharacter(language: string, character: any, id: string): Promise<void>;
+    export function addCharacters(language: string, allCharacters: any[]): Promise<void>;
+    export function selectRandomCharacter(language: string): void;
   }
   

@@ -9,7 +9,8 @@ import Header from './Header';
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [, setSuggestions] = useState<any[]>([]);
+
 
   useEffect(() => {
     const fetchCharacters = async () => {

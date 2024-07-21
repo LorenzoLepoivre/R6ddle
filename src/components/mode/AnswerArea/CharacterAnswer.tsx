@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import "./Answer.css";
-import { Character } from '../../models/firebase';
+import { Character } from '../../../models/firebase';
 
 interface CharacterAnswerProps {
   answers: Character[];
